@@ -5,6 +5,11 @@ const playButton = document.getElementById('play');
 const prevButton = document.getElementById('prev');
 const nextButton = document.getElementById('next');
 const music = document.querySelector('audio');
+const progressContainer = document.getElementById('progress-container');
+const progress = document.getElementById('progress');
+const currentTimeEl = document.getElementById('current-time');
+const durationEl = document.getElementById('duration');
+
 
 
 // music
@@ -92,6 +97,60 @@ function nextSong() {
 }
 
 
+// update progress bar
+
+function updateProgressBar(e) {
+    if (isPlaying) {
+
+
+        // destructuring
+        const { duration, currentTime } = e.srcElement;
+
+        //updateProgressBar
+
+        // Get percentage
+        const progressPercent = (currentTime / duration) * 100;
+
+        // style progress bar width
+
+        progress.style.width = `${progressPercent}%`;
+
+        // calculate display for duration
+        const durationMinutes = Math.floor(duration / 60);
+        console.log(durationMinutes)
+        let durationSeconds = Math.floor(duration % 60);
+        if (durationSeconds < 10) {
+            durationSeconds = `0${durationSeconds}`;
+        }
+
+        console.log(durationSeconds);
+
+        // delay switching duration to hide NAN
+
+        if (durationSeconds) {
+            durationEl.textContent = `${durationMinutes}:${durationSeconds}`
+        }
+
+        // calculate display current minutes
+        const currentMinutes = Math.floor(currentTime / 60);
+        console.log(currentMinutes)
+        let currentSeconds = Math.floor(currentTime % 60);
+        if (currentSeconds < 10) {
+            currentSeconds = `0${currentSeconds}`;
+        }
+
+        currentTimeEl.textContent = `${currentMinutes}:${currentSeconds}`
+
+
+
+
+    }
+
+
+}
+
 // Event Listeners
 prevButton.addEventListener('click', prevSong);
 nextButton.addEventListener('click', nextSong);
+music.addEventListener('timeupdate', updateProgressBar);
+
