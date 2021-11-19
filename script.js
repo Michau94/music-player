@@ -62,5 +62,36 @@ function loadSong(song) {
     image.src = `img/${song.name}.jpg`;
 }
 
+let currentSong = 0;
 
-loadSong(songs[2]);
+loadSong(songs[currentSong]);
+
+// Prev song
+function prevSong() {
+    currentSong--;
+    if (currentSong < 0) {
+
+        currentSong = songs.length - 1;
+    }
+
+    loadSong(songs[currentSong]);
+    playSong();
+}
+
+
+// Next songs
+function nextSong() {
+    currentSong++;
+    if (currentSong > songs.length - 1) {
+
+        currentSong = 0;
+    }
+
+    loadSong(songs[currentSong]);
+    playSong();
+}
+
+
+// Event Listeners
+prevButton.addEventListener('click', prevSong);
+nextButton.addEventListener('click', nextSong);
