@@ -15,19 +15,24 @@ const durationEl = document.getElementById('duration');
 // music
 const songs = [
     {
-        name: 'jacinto-1',
-        displayName: 'Electic Michau',
-        artist: 'Michau'
+        name: 'Ambient-Piano-1',
+        displayName: 'Ambient Piano',
+        artist: 'NOT(Michau)'
     },
     {
-        name: 'jacinto-2',
-        displayName: 'Mlem',
-        artist: 'Michau'
+        name: 'song-2',
+        displayName: 'Song 2',
+        artist: 'NOT(Michau)'
     },
     {
-        name: 'jacinto-3',
+        name: 'song-3',
         displayName: ' Michau',
-        artist: 'Michau'
+        artist: 'NOT(Michau)'
+    },
+    {
+        name: 'metric-1',
+        displayName: ' Michau',
+        artist: 'NOT(Michau)'
     }
 ]
 
