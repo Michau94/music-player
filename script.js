@@ -117,13 +117,12 @@ function updateProgressBar(e) {
 
         // calculate display for duration
         const durationMinutes = Math.floor(duration / 60);
-        console.log(durationMinutes)
         let durationSeconds = Math.floor(duration % 60);
         if (durationSeconds < 10) {
             durationSeconds = `0${durationSeconds}`;
         }
 
-        console.log(durationSeconds);
+
 
         // delay switching duration to hide NAN
 
@@ -133,18 +132,28 @@ function updateProgressBar(e) {
 
         // calculate display current minutes
         const currentMinutes = Math.floor(currentTime / 60);
-        console.log(currentMinutes)
         let currentSeconds = Math.floor(currentTime % 60);
         if (currentSeconds < 10) {
             currentSeconds = `0${currentSeconds}`;
         }
 
-        currentTimeEl.textContent = `${currentMinutes}:${currentSeconds}`
-
-
-
-
+        currentTimeEl.textContent = `${currentMinutes}:${currentSeconds}`;
     }
+
+}
+
+function setProgressBar(e) {
+    // get width of client
+    const width = this.clientWidth;
+    // get where i am clicking
+    const clickX = e.offsetX;
+
+    // get duration from music element
+
+    const { duration } = music;
+    console.log((clickX / width) * duration);
+
+    music.currentTime = (clickX / width) * duration;
 
 
 }
@@ -152,5 +161,8 @@ function updateProgressBar(e) {
 // Event Listeners
 prevButton.addEventListener('click', prevSong);
 nextButton.addEventListener('click', nextSong);
+music.addEventListener('ended', nextSong);
 music.addEventListener('timeupdate', updateProgressBar);
+progressContainer.addEventListener('click', setProgressBar);
+
 
